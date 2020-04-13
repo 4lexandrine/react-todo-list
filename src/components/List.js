@@ -1,44 +1,66 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
-const List = ({ list, setList}) => {
+const List = ({ todos }) => {
+
+  const [list, setList] = useState();
+  const [isLoading, setIsLoading] = useState(true);
+  // const [search, setSearch] = useState("");
+  // const [searchResult, setSearchResult] = useState();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await axios.get("http://localhost:3100/read");
+      setList(response.data)
+      setIsLoading(false);
+      console.log(response.data);
+    }
+    fetchData();
+  }, [todos])
+
   return (
-        <div className="todos">
-         {/* je retourne tous les éléments de ma liste */}
-         {list.map((item, index) => {
-            // console.log(list);
-            return (
-              <ul key={index}>
-                <li>
-                <input 
-                type="checkbox"
-                checked={item.done ? true : false }   
-                onChange={() => {
-                  const newList = [...list];
-                  const todo = newList[index];
-                  newList[index].done = !newList[index].done
-                  //si mon todo est "checked" je le descends en bas de liste
-                  if (newList[index].done) {
-                    newList.splice(index, 1)
-                    newList.push(todo)
-                  } else { // sinon je le remonte
-                    newList.splice(index, 1)
-                    newList.unshift(todo)
-                  }
-                   setList(newList);
+    isLoading ? <p>En cours de chargement</p> :
+      <div className="todos">
+        {/* SEARCH */}
+        {/* <input className="search" onChange={async (event) => {
+          setSearch(event.target.value)
+          const response = await axios.post("http://localhost:3100/search",
+            { title: search });
+          setSearchResult(response.data)
+          console.log(response.data);
 
-                }} />
-                <label className={item.done ? "line" : ""}>{item.todo}</label><i className="fas fa-trash" 
-                onClick={() => { // quand je clic sur la corbeille, je supprime le todo du tableau et j'affiche mon nouveau tableau
-                  let newList = [...list]
-                  newList.splice(index, 1)
-                  setList(newList)
-                }} ></i>
+        }}></input> */}
+
+        {/* AFFICHAGE TODOLIST */}
+        {/* je retourne tous les éléments de ma liste */}
+        {list && list.map((item, index) => {
+
+          return (
+            <form key={index} onSubmit={async () => {
+              await axios.post("http://localhost:3100/delete", { id: item._id });
+            }}>
+              <ul>
+                <li>
+                  <input
+                    type="checkbox"
+                    checked={item.done ? true : false}
+                    onChange={() => {
+                      const newList = [...list];
+                      const todo = newList[index];
+                      todo.done = !todo.done
+                      setList(newList);
+
+                    }} />
+                  <label className={item.done ? "line" : ""}>{item.title}</label>
+                  <button className="trash-btn"><i className="fas fa-trash"
+                  ></i></button>
                 </li>
               </ul>
-            )
-          })}
-        </div>
+            </form>
+          )
+        })}
+      </div >
   )
 }
 
-export default List;
+export default List; 

@@ -1,6 +1,14 @@
+/* COMMONS */
 
+html {
+  height: 100%;
+}
 body {
   font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  justify-content: center;
 }
 h1 {
   font-size: 30px;
@@ -13,19 +21,38 @@ h1 {
   align-items: center;
   margin-top: 100px;
 }
-.todos {
-  margin: 20px;
-}
-.todos li {
-  margin-bottom: 40px;
+
+/* HEADER */
+
+header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  width: 1000px;
+  margin: 0 auto;
+  border-bottom: 1px solid black;
 }
-.todos li label {
+h1 {
+  text-align: center;
+}
+
+/* CONTENT */
+
+form {
+  display: flex;
+  align-items: center;
+}
+form ul li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 500px;
+}
+form ul li label {
   margin: 0 40px;
 }
-.todos li i {
-  margin-left: 10px;
+.createTodo {
+  margin-bottom: 30px;
 }
 .line {
   text-decoration: line-through;
@@ -34,26 +61,54 @@ h1 {
 /* input[type=checkbox]:checked + label {
   text-decoration: line-through;
 }  */
-.newTask {
-  height: 36px;
-  padding: 4px;
-  margin: 40px 10px 200px;
-  font-size: 14px;
 
+.newTask {
+  width: 400px;
+  height: 44px;
+  padding: 0 4px;
+  margin: 0 10px;
+  font-size: 14px;
+  border-radius: 5px;
+  border: 1px solid lightgrey;
 }
 
 button {
-  height: 40px;
-  padding: 4px;
-  font-weight: bold;
-  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 44px;
+  width: 44px;
+  border-radius: 5px;
+  border: 1px lightgrey solid;
 }
+button p:active {
+  color: black;
+}
+button p {
+  color: grey;
+  font-size: 36px;
+}
+.trash-btn {
+  background-color: white;
+  border: none;
+}
+
+/* FOOTER */
+
 footer {
   display: flex;
   justify-content: center;
+  border-top: 1px solid black;
+  width: 1000px;
+  position: absolute;
+  bottom: 20px;
+  top: 100%;
 }
 footer a {
   text-decoration: inherit;
   color: inherit;
   font-weight: bold;
+}
+footer p {
+  margin-top: 20px;
 }
