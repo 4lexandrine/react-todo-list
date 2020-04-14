@@ -10,7 +10,7 @@ const Header = ({ search, setSearch, setSearchResult }) => {
             <div className="searchBar">
                 <input className="search" onChange={async (event) => {
                     setSearch(event.target.value)
-                    const response = await axios.post("http://localhost:3100/search",
+                    const response = await axios.post(process.env.REACT_APP_URL + "search",
                         { title: search });
                     setSearchResult(response.data.todos);
                 }}></input>

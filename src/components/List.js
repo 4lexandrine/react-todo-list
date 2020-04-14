@@ -1,10 +1,9 @@
 import React from "react";
 import axios from "axios";
 
-
 const List = ({ index, _id, done, title, list, setList }) => {
     return (<form key={index} onSubmit={async () => {
-        await axios.post("http://localhost:3100/delete", { id: _id });
+        await axios.post(process.env.REACT_APP_URL + "remove", { id: _id });
     }}>
         <ul>
             <li>
@@ -16,7 +15,7 @@ const List = ({ index, _id, done, title, list, setList }) => {
                         const todo = newList[index];
                         todo.done = !todo.done
                         setList(newList);
-                        await axios.post("http://localhost:3100/update", { id: list[index]._id, done: list[index].done });
+                        await axios.post(process.env.REACT_APP_URL + "update", { id: list[index]._id, done: list[index].done });
                     }} />
                 <label className={done ? "line" : ""}>{title}</label>
                 <button className="trash-btn"><i className="fas fa-trash"

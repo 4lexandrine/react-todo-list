@@ -7,7 +7,7 @@ const Todo = ({ todos, setTodos }) => {
         <form className="createTodo" onSubmit={async (e) => {
             e.preventDefault();
             if (todos) {
-                await axios.post("http://localhost:3100/create",
+                await axios.post(process.env.REACT_APP_URL + "create",
                     { title: todos, done: false }
                 );
                 setTodos("")

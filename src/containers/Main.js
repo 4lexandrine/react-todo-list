@@ -10,7 +10,7 @@ const Main = ({ todos, search, searchResult }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get("http://localhost:3100/read");
+      const response = await axios.get(process.env.REACT_APP_URL + "read");
       setList(response.data)
       setIsLoading(false);
     }
