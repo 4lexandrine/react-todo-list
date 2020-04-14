@@ -35,6 +35,24 @@ header {
 h1 {
   text-align: center;
 }
+.searchBar {
+  display: flex;
+  position: relative;
+}
+.search {
+  margin-right: 10px;
+  width: 200px;
+  height: 44px;
+  padding: 0 4px;
+  font-size: 14px;
+  border-radius: 5px;
+  border: 1px solid lightgrey;
+}
+.search-icon {
+  position: absolute;
+  right: 20px;
+  top: 15px;
+}
 
 /* CONTENT */
 
