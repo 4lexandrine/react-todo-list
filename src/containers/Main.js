@@ -18,7 +18,7 @@ const Main = ({ todos, search, searchResult }) => {
   }, [todos])
 
   return (
-    isLoading ? <p>En cours de chargement</p> :
+    isLoading ? <p></p> :
       <div className="todos">
 
 
