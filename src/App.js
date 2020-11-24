@@ -7,7 +7,7 @@ import Footer from "./components/Footer";
 
 function App() {
 
-  const [todos, setTodos] = useState(""); // état pour créer un todo
+  const [todos, setTodos] = useState("");
   const [search, setSearch] = useState("");
   const [searchResult, setSearchResult] = useState();
 
