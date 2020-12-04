@@ -21,12 +21,12 @@ const Main = ({ todos, search, searchResult }) => {
     isLoading ? <p></p> :
       <div className="todos">
         {
-          search && searchResult ? searchResult.map((item) => {
-            return <List {...item} key={item._id} list={list} setList={setList} />
+          search && searchResult ? searchResult.map((item, index) => {
+            return <List {...item} key={item._id} list={list} setList={setList} index={index} />
           })
             :
-            list && list.map((item) => {
-              return <List {...item} key={item._id} list={list} setList={setList} />
+            list && list.map((item, index) => {
+              return <List {...item} key={item._id} list={list} setList={setList} index={index} />
             })
         }
       </div >
